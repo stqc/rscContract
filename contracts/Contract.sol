@@ -1,10 +1,4 @@
-/**
- *Submitted for verification at BscScan.com on 2021-08-29
-*/
-
-/**
- *Submitted for verification at BscScan.com on 2021-08-27
-*/
+/* Code by STQC find me on https://github.com/stqc */
 
 pragma solidity ^0.6.12;
 // SPDX-License-Identifier: Creative Commons Attribution Non Commercial Share Alike 4.0 International
