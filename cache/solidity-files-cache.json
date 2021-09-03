@@ -1,0 +1,49 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\firei\\Desktop\\rscContract\\rscContract\\contracts\\Contract.sol": {
+      "lastModificationDate": 1630673778378,
+      "contentHash": "964467b3debe1499d7afef5f617f7a2b",
+      "sourceName": "contracts/Contract.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.6.12"
+      ],
+      "artifacts": [
+        "Address",
+        "Context",
+        "IBEP20",
+        "IUniswapV2Factory",
+        "IUniswapV2Pair",
+        "IUniswapV2Router01",
+        "IUniswapV2Router02",
+        "Ownable",
+        "RSC",
+        "ReentrancyGuard",
+        "SafeMath"
+      ]
+    }
+  }
+}
