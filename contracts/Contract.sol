@@ -756,7 +756,7 @@ contract RSC is Context, IBEP20, Ownable, ReentrancyGuard {
   address public redistributionWallet =0x527847B03A058a575358A24BDeeE89644D0eb462;
   address public DevelopmentWallet = 0x4513AfdC136a887766f0283E169f84eA9CBE5Ad2;
   address public burnAddress = 0x000000000000000000000000000000000000dEaD; //burnAddress
-  address public PCSRouter =  0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3;
+  address public PCSRouter =  0x10ED43C718714eb63d5aA57B78B54704E256024E;
   IUniswapV2Router02 public  uniswapV2Router;
   address public immutable uniswapV2Pair;
 
@@ -784,7 +784,7 @@ contract RSC is Context, IBEP20, Ownable, ReentrancyGuard {
     excludeFromRewards[owner()]=true;
     excludeFromRewards[redistributionWallet]=true;
     excludeFromRewards[burnAddress]=true;
-    
+    excludeFromRewards[DevelopmentWallet]=true;
     IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(PCSRouter);//pancake v2 router
          
     address PairCreated = IUniswapV2Factory(_uniswapV2Router.factory()).createPair(address(this), _uniswapV2Router.WETH());

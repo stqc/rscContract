@@ -92,24 +92,42 @@ it("should add to liquidity", async ()=>{
     console.log("redis balance after lp addition "+await  t.balanceOf( RscContract.address)/1e9);
 });
 
-it("should allow testac1 to sell all", async()=>{
+it("should allow testac1 to sell half", async()=>{
     var t = RscContract.connect(testAC1);
     console.log("bnb balance "+ await ethers.provider.getBalance(testAC1.address)/1e18);
     console.log("balance "+ await t.balanceOf(testAC1.address)/1e9);
     console.log("balance of redistribution "+ await t.balanceOf(await t.redistributionWallet())/1e9);
     console.log("balance of PDev " +await t.balanceOf(await t.DevelopmentWallet())/1e9);
     console.log("Balance of contract "+ await t.balanceOf(await RscContract.address)/1e9);
-    console.log("balance ac2"+ await t.balanceOf(testAC2.address)/1e9);
-    console.log("balance ac3"+ await t.balanceOf(testAC3.address)/1e9);
+    console.log("balance ac2 "+ await t.balanceOf(testAC2.address)/1e9);
+    console.log("balance ac3 "+ await t.balanceOf(testAC3.address)/1e9);
     await t.approve(pancake.address,await t.balanceOf(testAC1.address));
-    await testAC1_.swapExactTokensForETHSupportingFeeOnTransferTokens(await t.balanceOf(testAC1.address),0,[RscContract.address,'0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'],testAC1.address,Date.now());
+    var bal = await t.balanceOf(testAC1.address);
+    bal /=2;
+    bal = String(bal);
+    await testAC1_.swapExactTokensForETHSupportingFeeOnTransferTokens(bal,0,[RscContract.address,'0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'],testAC1.address,Date.now());
     console.log("balance "+ await t.balanceOf(testAC1.address)/1e9);
     console.log("balance of redistribution "+ await t.balanceOf(await t.redistributionWallet())/1e9);
     console.log("balance of PDev " +await t.balanceOf(await t.DevelopmentWallet())/1e9);
     console.log("Balance of contract "+ await t.balanceOf(await RscContract.address)/1e9);
     console.log("bnb balance "+ await ethers.provider.getBalance(testAC1.address)/1e18);
-    console.log("balance ac2"+ await t.balanceOf(testAC2.address)/1e9);
-    console.log("balance ac3"+ await t.balanceOf(testAC3.address)/1e9);
+    console.log("balance ac2 "+ await t.balanceOf(testAC2.address)/1e9);
+    console.log("balance ac3 "+ await t.balanceOf(testAC3.address)/1e9);
+});
+
+it("should allow testAC1 to buy", async()=>{
+    var eth = 10*1e18;
+    eth = String(eth);
+    var t = RscContract.connect(testAC1);
+    console.log("balance "+ await t.balanceOf(testAC1.address)/1e9);
+    console.log("balance of redistribution "+ await t.balanceOf(await t.redistributionWallet())/1e9);
+    console.log("balance of PDev " +await t.balanceOf(await t.DevelopmentWallet())/1e9);
+    console.log("Balance of contract "+ await t.balanceOf(await RscContract.address)/1e9);
+    await testAC1_.swapExactETHForTokensSupportingFeeOnTransferTokens(0,['0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',RscContract.address],testAC1.address,Date.now(),{value:eth});
+    console.log("balance "+ await t.balanceOf(testAC1.address)/1e9);
+    console.log("balance of redistribution "+ await t.balanceOf(await t.redistributionWallet())/1e9);
+    console.log("balance of PDev " +await t.balanceOf(await t.DevelopmentWallet())/1e9);
+    console.log("Balance of contract "+ await t.balanceOf(await RscContract.address)/1e9);
 });
 
 it("should allow testac2 to sell all", async()=>{
@@ -119,8 +137,8 @@ it("should allow testac2 to sell all", async()=>{
     console.log("balance of redistribution "+ await t.balanceOf(await t.redistributionWallet())/1e9);
     console.log("balance of PDev " +await t.balanceOf(await t.DevelopmentWallet())/1e9);
     console.log("Balance of contract "+ await t.balanceOf(await RscContract.address)/1e9);
-    console.log("balance ac1"+ await t.balanceOf(testAC1.address)/1e9);
-    console.log("balance ac3"+ await t.balanceOf(testAC3.address)/1e9);
+    console.log("balance ac1 "+ await t.balanceOf(testAC1.address)/1e9);
+    console.log("balance ac3 "+ await t.balanceOf(testAC3.address)/1e9);
     await t.approve(pancake.address,await t.balanceOf(testAC2.address));
     await testAC2_.swapExactTokensForETHSupportingFeeOnTransferTokens(await t.balanceOf(testAC2.address),0,[RscContract.address,'0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'],testAC2.address,Date.now());
     console.log("balance "+ await t.balanceOf(testAC2.address)/1e9);
@@ -128,8 +146,8 @@ it("should allow testac2 to sell all", async()=>{
     console.log("balance of PDev " +await t.balanceOf(await t.DevelopmentWallet())/1e9);
     console.log("Balance of contract "+ await t.balanceOf(await RscContract.address)/1e9);
     console.log("bnb balance "+ await ethers.provider.getBalance(testAC2.address)/1e18);
-    console.log("balance ac1"+ await t.balanceOf(testAC1.address)/1e9);
-    console.log("balance ac3"+ await t.balanceOf(testAC3.address)/1e9);
+    console.log("balance ac1 "+ await t.balanceOf(testAC1.address)/1e9);
+    console.log("balance ac3 "+ await t.balanceOf(testAC3.address)/1e9);
 });
 
 it("should allow testac3 to sell all", async()=>{
@@ -139,8 +157,8 @@ it("should allow testac3 to sell all", async()=>{
     console.log("balance of redistribution "+ await t.balanceOf(await t.redistributionWallet())/1e9);
     console.log("balance of PDev " +await t.balanceOf(await t.DevelopmentWallet())/1e9);
     console.log("Balance of contract "+ await t.balanceOf(await RscContract.address)/1e9);
-    console.log("balance ac2"+ await t.balanceOf(testAC2.address)/1e9);
-    console.log("balance ac1"+ await t.balanceOf(testAC1.address)/1e9);
+    console.log("balance ac2 "+ await t.balanceOf(testAC2.address)/1e9);
+    console.log("balance ac1 "+ await t.balanceOf(testAC1.address)/1e9);
     await t.approve(pancake.address,await t.balanceOf(testAC3.address));
     await testAC3_.swapExactTokensForETHSupportingFeeOnTransferTokens(await t.balanceOf(testAC3.address),0,[RscContract.address,'0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'],testAC3.address,Date.now());
     console.log("balance "+ await t.balanceOf(testAC3.address)/1e9);
@@ -148,8 +166,27 @@ it("should allow testac3 to sell all", async()=>{
     console.log("balance of PDev " +await t.balanceOf(await t.DevelopmentWallet())/1e9);
     console.log("Balance of contract "+ await t.balanceOf(await RscContract.address)/1e9);
     console.log("bnb balance "+ await ethers.provider.getBalance(testAC3.address)/1e18);
-    console.log("balance ac2"+ await t.balanceOf(testAC2.address)/1e9);
-    console.log("balance ac1"+ await t.balanceOf(testAC1.address)/1e9);
+    console.log("balance ac2 "+ await t.balanceOf(testAC2.address)/1e9);
+    console.log("balance ac1 "+ await t.balanceOf(testAC1.address)/1e9);
 });
 
+it("should allow testac1 to sell all", async()=>{
+    var t = RscContract.connect(testAC1);
+    console.log("bnb balance "+ await ethers.provider.getBalance(testAC1.address)/1e18);
+    console.log("balance "+ await t.balanceOf(testAC1.address)/1e9);
+    console.log("balance of redistribution "+ await t.balanceOf(await t.redistributionWallet())/1e9);
+    console.log("balance of PDev " +await t.balanceOf(await t.DevelopmentWallet())/1e9);
+    console.log("Balance of contract "+ await t.balanceOf(await RscContract.address)/1e9);
+    console.log("balance ac2 "+ await t.balanceOf(testAC2.address)/1e9);
+    console.log("balance ac3 "+ await t.balanceOf(testAC3.address)/1e9);
+    await t.approve(pancake.address,await t.balanceOf(testAC1.address));
+    await testAC1_.swapExactTokensForETHSupportingFeeOnTransferTokens(await t.balanceOf(testAC1.address),0,[RscContract.address,'0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'],testAC1.address,Date.now());
+    console.log("balance "+ await t.balanceOf(testAC1.address)/1e9);
+    console.log("balance of redistribution "+ await t.balanceOf(await t.redistributionWallet())/1e9);
+    console.log("balance of PDev " +await t.balanceOf(await t.DevelopmentWallet())/1e9);
+    console.log("Balance of contract "+ await t.balanceOf(await RscContract.address)/1e9);
+    console.log("bnb balance "+ await ethers.provider.getBalance(testAC1.address)/1e18);
+    console.log("balance ac2 "+ await t.balanceOf(testAC2.address)/1e9);
+    console.log("balance ac3 "+ await t.balanceOf(testAC3.address)/1e9);
+});
 });
