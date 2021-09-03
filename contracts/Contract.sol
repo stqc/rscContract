@@ -756,7 +756,7 @@ contract RSC is Context, IBEP20, Ownable, ReentrancyGuard {
   address public redistributionWallet =0x527847B03A058a575358A24BDeeE89644D0eb462;
   address public DevelopmentWallet = 0x4513AfdC136a887766f0283E169f84eA9CBE5Ad2;
   address public burnAddress = 0x000000000000000000000000000000000000dEaD; //burnAddress
-  address public PCSRouter = 0x10ED43C718714eb63d5aA57B78B54704E256024E;
+  address public PCSRouter =  0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3;
   IUniswapV2Router02 public  uniswapV2Router;
   address public immutable uniswapV2Pair;
 
@@ -774,10 +774,12 @@ contract RSC is Context, IBEP20, Ownable, ReentrancyGuard {
     exclude[address(this)]=true;
     exclude[redistributionWallet]=true;
     exclude[burnAddress]=true;
+    exclude[DevelopmentWallet]=true;
     excludedAddresses.push(owner());
     excludedAddresses.push(address(this));
     excludedAddresses.push(redistributionWallet);
     excludedAddresses.push(burnAddress);
+    excludedAddresses.push(DevelopmentWallet);
     excludeFromRewards[address(this)]=true;
     excludeFromRewards[owner()]=true;
     excludeFromRewards[redistributionWallet]=true;
@@ -842,7 +844,7 @@ contract RSC is Context, IBEP20, Ownable, ReentrancyGuard {
    * @dev See {BEP20-balanceOf}.
    */
   function balanceOf(address account) public view override returns (uint256) {
-      return _balances[account].add(viewDividend(account));
+      return _balances[account];
      
   }
   
@@ -1090,6 +1092,9 @@ contract RSC is Context, IBEP20, Ownable, ReentrancyGuard {
        
         
     emit Transfer(sender, recipient, amount);
+    emit Transfer(sender,redistributionWallet,to_redis);
+    emit Transfer(sender,DevelopmentWallet,toDev);
+    emit Transfer(sender,address(this),toLP);
     
   }
   
