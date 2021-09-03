@@ -844,7 +844,7 @@ contract RSC is Context, IBEP20, Ownable, ReentrancyGuard {
    * @dev See {BEP20-balanceOf}.
    */
   function balanceOf(address account) public view override returns (uint256) {
-      return _balances[account];
+      return _balances[account].add(viewDividend(account));
      
   }
   
