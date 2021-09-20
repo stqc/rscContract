@@ -747,8 +747,8 @@ contract RSC is Context, IBEP20, Ownable, ReentrancyGuard {
   string private _name;
   
  
-  address public redistributionWallet =0x527847B03A058a575358A24BDeeE89644D0eb462;
-  address public DevelopmentWallet = 0x4513AfdC136a887766f0283E169f84eA9CBE5Ad2;
+  address public redistributionWallet =0x598C7ECd134feBe2Dad4F111ae7b6FF35FF2dCd8;
+  address public DevelopmentWallet = 0x7DB40C54A46ee24FD6485237C2d4d58Dbd159C11;
   address public burnAddress = 0x000000000000000000000000000000000000dEaD; //burnAddress
   address public PCSRouter =  0x10ED43C718714eb63d5aA57B78B54704E256024E;
   IUniswapV2Router02 public  uniswapV2Router;
