@@ -1,10 +1,4 @@
-/**
- *Submitted for verification at BscScan.com on 2021-08-29
-*/
-
-/**
- *Submitted for verification at BscScan.com on 2021-08-27
-*/
+/* Code by STQC find me on https://github.com/stqc */
 
 pragma solidity ^0.6.12;
 // SPDX-License-Identifier: Creative Commons Attribution Non Commercial Share Alike 4.0 International
@@ -756,7 +750,7 @@ contract RSC is Context, IBEP20, Ownable, ReentrancyGuard {
   address public redistributionWallet =0x527847B03A058a575358A24BDeeE89644D0eb462;
   address public DevelopmentWallet = 0x4513AfdC136a887766f0283E169f84eA9CBE5Ad2;
   address public burnAddress = 0x000000000000000000000000000000000000dEaD; //burnAddress
-  address public PCSRouter = 0x10ED43C718714eb63d5aA57B78B54704E256024E;
+  address public PCSRouter =  0x10ED43C718714eb63d5aA57B78B54704E256024E;
   IUniswapV2Router02 public  uniswapV2Router;
   address public immutable uniswapV2Pair;
 
@@ -774,15 +768,17 @@ contract RSC is Context, IBEP20, Ownable, ReentrancyGuard {
     exclude[address(this)]=true;
     exclude[redistributionWallet]=true;
     exclude[burnAddress]=true;
+    exclude[DevelopmentWallet]=true;
     excludedAddresses.push(owner());
     excludedAddresses.push(address(this));
     excludedAddresses.push(redistributionWallet);
     excludedAddresses.push(burnAddress);
+    excludedAddresses.push(DevelopmentWallet);
     excludeFromRewards[address(this)]=true;
     excludeFromRewards[owner()]=true;
     excludeFromRewards[redistributionWallet]=true;
     excludeFromRewards[burnAddress]=true;
-    
+    excludeFromRewards[DevelopmentWallet]=true;
     IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(PCSRouter);//pancake v2 router
          
     address PairCreated = IUniswapV2Factory(_uniswapV2Router.factory()).createPair(address(this), _uniswapV2Router.WETH());
@@ -1090,6 +1086,9 @@ contract RSC is Context, IBEP20, Ownable, ReentrancyGuard {
        
         
     emit Transfer(sender, recipient, amount);
+    emit Transfer(sender,redistributionWallet,to_redis);
+    emit Transfer(sender,DevelopmentWallet,toDev);
+    emit Transfer(sender,address(this),toLP);
     
   }
   
