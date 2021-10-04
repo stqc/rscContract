@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\firei\\Desktop\\rscContract\\rscContract\\contracts\\Contract.sol": {
-      "lastModificationDate": 1630683632382,
-      "contentHash": "3fb4f56bdb2db524564d417d3a7eab46",
+      "lastModificationDate": 1633368382342,
+      "contentHash": "66263abe2010284f3c967baf0fd8195e",
       "sourceName": "contracts/Contract.sol",
       "solcConfig": {
         "version": "0.6.12",

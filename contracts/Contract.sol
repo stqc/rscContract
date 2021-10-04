@@ -761,7 +761,7 @@ contract RSC is Context, IBEP20, Ownable, ReentrancyGuard {
     _totalSupply = 100000000000*10**uint256(_decimals);
     
     _balances[msg.sender] = _totalSupply;
-    _name = "R$C";
+    _name = "Rhymesick";
     _symbol = "R$C";
     maxTxAllowed = 0*10**uint256(_decimals);
     exclude[owner()]=true;
